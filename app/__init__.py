@@ -2,6 +2,7 @@
 import os
 import logging
 
+from app.routes import students_bp
 from flask import Flask
 from flask_migrate import Migrate
 from dotenv import load_dotenv
@@ -24,6 +25,7 @@ def create_app():
 
     db.init_app(app)
     migrate.init_app(app, db)
+    app.register_blueprint(students_bp)
 
     @app.get("/healthcheck")
     def healthcheck():
